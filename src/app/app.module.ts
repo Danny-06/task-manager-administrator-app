@@ -41,6 +41,13 @@ import {FileUploadModule} from 'primeng/fileupload';
 
     BrowserAnimationsModule,
 
+    // PrimeNg Components
+    InputTextModule,
+    InputTextareaModule,
+    ButtonModule,
+    DropdownModule,
+    FileUploadModule,
+
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
