@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "task-manager-administrator-app:build:production",
+            "firebaseProject": "proyecto-integrado-65cf2",
+            "firebaseHostingSite": "task-manager-admin-2006"
+          }
         }
       }
     }

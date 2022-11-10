@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "proyecto-integrado-65cf2": {
+      "hosting": {
+        "task-manager-administrator-app": [
+          "task-manager-admin-2006"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "proyecto-integrado-65cf2"
+  }
+}
