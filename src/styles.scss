@@ -164,3 +164,68 @@ b, strong, i, em, mark, small, ins, del, sub, sup,
 pre, code, var, kbd, output {
   user-select: text;
 }
+
+
+[data-id="app-content"] {
+  padding: 0;
+}
+
+app-root {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+}
+
+app-root > * {
+  flex-grow: 1;
+  flex-shrink: 1;
+  align-self: stretch;
+
+  overflow: auto;
+}
+
+
+
+
+p-table {
+  border-radius: 6px;
+
+  overflow: hidden;
+
+  &, * {
+    user-select: none;
+  }
+
+  tr:hover:not(:has(> td.-interactive > :hover)),
+  tr:active:not(:has(> td.-interactive > :hover)) {
+    background-color: #333 !important;
+  }
+
+  tr:active:not(:has(> td.-interactive > :hover)) {
+    background-color: #121212 !important;
+  }
+
+  p-paginator {
+
+    > :first-child {
+      border: none !important;
+
+      > p-dropdown {
+
+        > :first-child {
+          align-items: center;
+
+          > p-overlay {
+
+            > :first-child {
+              top: 0 !important;
+              left: 0 !important;
+              transform: translateX(100%) translateY(-100%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

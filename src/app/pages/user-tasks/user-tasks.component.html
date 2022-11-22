@@ -1,28 +1,25 @@
 <p-table
     class="table"
-    [value]="users ?? []"
+    [value]="tasks ?? []"
     [paginator]="true" [rows]="6" [rowsPerPageOptions]="[6, 10, 20]"
     [scrollable]="true"
-    sortMode="single" sortField="user.name" groupRowsBy="user.name"
 >
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
-            <th>Image</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-user>
-        <tr (click)="goToUser(user.id)">
-            <ng-container *ngIf="user.name; else empty">
-                <td>{{user.name}}</td>
-                <td>
-                    <img class="user-image" [src]="user.image" draggable="false" alt="">
-                </td>
+    <ng-template pTemplate="body" let-task>
+        <tr>
+            <ng-container *ngIf="task.title; else empty">
+                <td>{{task.title}}</td>
+                <td>{{task.description?.slice(0, 20)}}{{task.description.length > 22 ? '...' : ''}}</td>
                 <td class="-interactive">
-                    <div class="action-buttons" (click)="$event.stopPropagation()">
+                    <div class="action-buttons" (click)="$event.preventDefault()">
                         <button pButton class="edit-btn">Edit</button>
-                        <button (click)="authService.deleteUser(user.id)" pButton class="delete-btn p-button-danger">Delete</button>
+                        <button pButton class="delete-btn p-button-danger">Delete</button>
                     </div>
                 </td>
             </ng-container>

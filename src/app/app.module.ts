@@ -6,9 +6,13 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main/main.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+
+// Firebase Admin: https://firebase.google.com/docs/admin/setup
+import { applicationDefault, initializeApp as initializeAppAdmin } from 'firebase-admin/app';
+
 
 // NgModel
 import { FormsModule } from '@angular/forms';
@@ -25,13 +29,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import {FileUploadModule} from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    UserTasksComponent
   ],
   imports: [
     // NgModule
@@ -47,9 +55,12 @@ import {FileUploadModule} from 'primeng/fileupload';
     ButtonModule,
     DropdownModule,
     FileUploadModule,
+    TableModule,
+    PaginatorModule,
 
     BrowserModule,
     AppRoutingModule,
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
@@ -59,3 +70,9 @@ import {FileUploadModule} from 'primeng/fileupload';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+initializeAppAdmin({
+  credential: applicationDefault(),
+  databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
+})
