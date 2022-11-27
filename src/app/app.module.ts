@@ -11,7 +11,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 // Firebase Admin: https://firebase.google.com/docs/admin/setup
-import { applicationDefault, initializeApp as initializeAppAdmin } from 'firebase-admin/app';
+// import { applicationDefault, initializeApp as initializeAppAdmin } from 'firebase-admin/app';
 
 
 // NgModel
@@ -33,13 +33,17 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
+import { UserTaskComponent } from './pages/user-task/user-task.component';
+import { UserAccountComponent } from './pages/user-account/user-account.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    UserTasksComponent
+    UserTasksComponent,
+    UserTaskComponent,
+    UserAccountComponent
   ],
   imports: [
     // NgModule
@@ -72,7 +76,7 @@ import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
 export class AppModule { }
 
 
-initializeAppAdmin({
-  credential: applicationDefault(),
-  databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
-})
+// initializeAppAdmin({
+//   credential: applicationDefault(),
+//   databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
+// })

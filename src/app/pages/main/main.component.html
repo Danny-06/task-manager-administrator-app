@@ -21,8 +21,9 @@
                 </td>
                 <td class="-interactive">
                     <div class="action-buttons" (click)="$event.stopPropagation()">
-                        <button pButton class="edit-btn">Edit</button>
-                        <button (click)="authService.deleteUser(user.id)" pButton class="delete-btn p-button-danger">Delete</button>
+                        <button (click)="seeUserAccount(user.id)" pButton class="account-btn p-button-info">See Account</button>
+                        <button (click)="editUser(user.id)" pButton class="edit-btn">Edit</button>
+                        <button (click)="deleteUser(user.id)" pButton class="delete-btn p-button-danger">Delete</button>
                     </div>
                 </td>
             </ng-container>

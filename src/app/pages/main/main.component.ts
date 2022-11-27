@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { deleteUser } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,18 +12,21 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MainComponent implements OnInit {
 
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
     private router: Router,
   ) {}
 
   users: User[] | null = null
 
   async ngOnInit() {
+    const authUsers = await this.authService.getAuthUsers()
+    console.log('Auth Users', authUsers)
+
     this.users = await this.authService.getUsers()
 
-    this.addRemainderToData(this.users, 6)
+    console.log('Users', [...this.users])
 
-    console.log(this.users)
+    this.addRemainderToData(this.users, 6)
     
     this.users.forEach(async user => {
       const tasks = await this.authService.getTasksFromUser(user.id)
@@ -46,6 +50,20 @@ export class MainComponent implements OnInit {
         data.push({} as Task)
       }
     }
+  }
+
+  // Handle Users
+
+  seeUserAccount(uid: string) {
+    
+  }
+
+  deleteUser(uid: string) {
+
+  }
+
+  editUser(uid: string) {
+
   }
 
 }
