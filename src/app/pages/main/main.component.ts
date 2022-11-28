@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { deleteUser } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';

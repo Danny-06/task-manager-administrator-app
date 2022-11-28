@@ -35,6 +35,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
 import { UserTaskComponent } from './pages/user-task/user-task.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
+import { DialogModule } from 'primeng/dialog';
+import { ModalComponent } from './libs/modal/modal.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
     MainComponent,
     UserTasksComponent,
     UserTaskComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    ModalComponent
   ],
   imports: [
     // NgModule
@@ -61,6 +64,7 @@ import { UserAccountComponent } from './pages/user-account/user-account.componen
     FileUploadModule,
     TableModule,
     PaginatorModule,
+    DialogModule,
 
     BrowserModule,
     AppRoutingModule,

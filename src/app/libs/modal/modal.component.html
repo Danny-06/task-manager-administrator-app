@@ -1,0 +1,10 @@
+<p-dialog [visible]="isVisible">
+    <ng-template pTemplate="header">
+        {{options.header}}
+    </ng-template>
+    {{options.message}}
+    <ng-template pTemplate="footer" class="buttons">
+        <button pButton class="edit-btn">Ok</button>
+        <button pButton class="delete-btn p-button-danger">Cancel</button>
+    </ng-template>
+</p-dialog>
