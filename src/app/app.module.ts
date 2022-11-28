@@ -78,9 +78,3 @@ import { ModalComponent } from './libs/modal/modal.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-// initializeAppAdmin({
-//   credential: applicationDefault(),
-//   databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
-// })

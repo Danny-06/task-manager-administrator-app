@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { openModal } from 'src/app/libs/modal/modal.component';
 
 @Component({
   selector: 'app-main',
@@ -12,12 +13,21 @@ export class MainComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   users: User[] | null = null
 
   async ngOnInit() {
+    await openModal({
+      header: 'Sonic',
+      message: 'Elise',
+      buttons: [
+        {text: 'Ok', action: () => console.log('OK')},
+        {text: 'Cancel', closeModal: true, type: 'cancel', action: () => console.log('Cancel')}
+      ]
+    })
+
     const authUsers = await this.authService.getAuthUsers()
     console.log('Auth Users', authUsers)
 
