@@ -4,6 +4,8 @@ import { MainComponent } from './pages/main/main.component';
 
 import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
+import { UserTaskComponent } from './pages/user-task/user-task.component';
+import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login'])
 
@@ -15,13 +17,25 @@ const routes: Routes = [
   },
   {
     path: 'main',
+    redirectTo: 'users'
+  },
+  {
+    path: 'users',
     component: MainComponent,
     // canActivate: [AuthGuard],
     // data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'tasks/:id',
+    path: 'user/:id/tasks',
     component: UserTasksComponent
+  },
+  {
+    path: 'user/:id/task/:id',
+    component: UserTaskComponent
+  },
+  {
+    path: 'user/:id/task/edit/:id',
+    component: UserTaskEditComponent
   }
 ];
 

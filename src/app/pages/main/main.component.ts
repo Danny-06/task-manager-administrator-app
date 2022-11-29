@@ -14,39 +14,32 @@ export class MainComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   users: User[] | null = null
 
   async ngOnInit() {
-    await openModal({
-      header: 'Sonic',
-      message: 'Elise',
-      buttons: [
-        {text: 'Ok', action: () => console.log('OK')},
-        {text: 'Cancel', closeModal: true, type: 'cancel', action: () => console.log('Cancel')}
-      ]
-    })
-
     const authUsers = await this.authService.getAuthUsers()
     console.log('Auth Users', authUsers)
 
     this.users = await this.authService.getUsers()
+    this.users.reverse()
 
     console.log('Users', [...this.users])
 
     this.addRemainderToData(this.users, 6)
-    
+
     this.users.forEach(async user => {
       const tasks = await this.authService.getTasksFromUser(user.id)
-      console.log(user.name, tasks)
+
+      if (user.name) console.log(user.name, tasks)
     })
   }
 
   goToUser(userId: string) {
     if (!userId) return
 
-    this.router.navigateByUrl(`/tasks/${userId}`)
+    this.router.navigateByUrl(`/user/${userId}/tasks`)
   }
 
   addRemainderToData(data: any[], remainderValue: number) {
@@ -64,15 +57,22 @@ export class MainComponent implements OnInit {
   // Handle Users
 
   seeUserAccount(uid: string) {
-    
+
   }
 
-  deleteUser(uid: string) {
-
+  async deleteUser(uid: string) {
+    await openModal({
+      header: 'Are you sure you want to delete this user?',
+      message: 'This action will delete the user account along with its data',
+      buttons: [
+        { text: 'Ok', action: () => this.authService.deleteUser(uid) },
+        { text: 'Cancel', type: 'cancel' }
+      ]
+    })
   }
 
   editUser(uid: string) {
-
+    this.router.navigateByUrl(`/task/edit/${uid}`)
   }
 
 }

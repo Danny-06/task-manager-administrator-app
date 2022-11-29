@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Task } from 'src/app/interfaces/task';
 import { AuthService } from 'src/app/services/auth.service';
+import { openModal } from '../../libs/modal/modal.component';
 
 @Component({
   selector: 'app-user-tasks',
@@ -14,24 +15,26 @@ export class UserTasksComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
+
+  userId: string | null = null
 
   tasks: Task[] | null = null
 
   async ngOnInit() {
-    const userId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.userId = this.activatedRoute.snapshot.paramMap.get('id')
 
-    if (!userId) {
+    if (!this.userId) {
       return
     }
 
-    this.tasks = await this.authService.getTasksFromUser(userId)
+    this.tasks = await this.authService.getTasksFromUser(this.userId)
+    this.tasks.reverse()
 
     this.addRemainderToData(this.tasks, 6)
 
-    
 
-    console.log(this.tasks)
+    console.log('Tasks', this.tasks)
   }
 
   addRemainderToData(data: any[], remainderValue: number) {
@@ -44,6 +47,31 @@ export class UserTasksComponent implements OnInit {
         data.push({} as Task)
       }
     }
+  }
+
+  goToTask(taskId: string) {
+    this.router.navigateByUrl(`/user/${this.userId}/task/${taskId}`)
+  }
+
+  editTask(taskId: string) {
+    this.router.navigateByUrl(`/user/${this.userId}/task/edit/${taskId}`)
+  }
+
+  async deleteTask(taskId: string) {
+    await openModal({
+      header: 'Are you sure you want to delete this task?',
+      message: 'This action will delete the task from the user and cannot be undone',
+      buttons: [
+        {
+          text: 'Ok',
+          action: async () => {
+            await this.authService.deleteTaskToUser(this.userId!!, taskId)
+            location.reload()
+          }
+        },
+        { text: 'Cancel', type: 'cancel' }
+      ]
+    })
   }
 
 }

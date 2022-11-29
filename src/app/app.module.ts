@@ -37,6 +37,7 @@ import { UserTaskComponent } from './pages/user-task/user-task.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { DialogModule } from 'primeng/dialog';
 import { ModalComponent } from './libs/modal/modal.component';
+import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ModalComponent } from './libs/modal/modal.component';
     UserTasksComponent,
     UserTaskComponent,
     UserAccountComponent,
-    ModalComponent
+    ModalComponent,
+    UserTaskEditComponent
   ],
   imports: [
     // NgModule

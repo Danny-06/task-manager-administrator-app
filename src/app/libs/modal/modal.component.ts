@@ -23,7 +23,7 @@ export async function openModal(options: ModalOptions) {
 interface ModalOptions {
   header?: string
   message?: string
-  buttons?: {text: string, closeModal?: boolean, action?: (event?: Event) => void, type?: string}[]
+  buttons?: { text: string, closeModal?: boolean, action?: (event?: Event) => void, type?: string }[]
 }
 
 @Component({
@@ -37,9 +37,9 @@ export class ModalComponent implements OnInit {
     this.nativeElement = this.elementRef.nativeElement
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  detachCallback = () => {}
+  detachCallback = () => { }
 
   nativeElement: HTMLElement
 
@@ -59,7 +59,7 @@ export class ModalComponent implements OnInit {
     const closeHeaderButtonSelector = '.p-dialog-header-close'
 
     this.nativeElement.addEventListener('click', (event: any) => {
-      if (!event.target?.matches(closeHeaderButtonSelector)) {
+      if (!event.target?.closest(closeHeaderButtonSelector)) {
         return
       }
 

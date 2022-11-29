@@ -8,8 +8,7 @@
             pButton
             [class]="button.type === 'cancel' ? 'p-button-danger' : ''"
             *ngFor="let button of options.buttons"
-            (click)="button.action?.($event); button.closeModal ? detachCallback() : null"
-        >
+            (click)="button.action?.($event); detachCallback()">
             {{button.text}}
         </button>
     </ng-template>

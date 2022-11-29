@@ -2,8 +2,7 @@
     class="table"
     [value]="tasks ?? []"
     [paginator]="true" [rows]="6" [rowsPerPageOptions]="[6, 10, 20]"
-    [scrollable]="true"
->
+    [scrollable]="true">
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
@@ -12,14 +11,14 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-task>
-        <tr>
+        <tr (click)="goToTask(task.id)">
             <ng-container *ngIf="task.title; else empty">
                 <td>{{task.title}}</td>
                 <td>{{task.description?.slice(0, 20)}}{{task.description.length > 22 ? '...' : ''}}</td>
                 <td class="-interactive">
-                    <div class="action-buttons" (click)="$event.preventDefault()">
-                        <button pButton class="edit-btn">Edit</button>
-                        <button pButton class="delete-btn p-button-danger">Delete</button>
+                    <div class="action-buttons" (click)="$event.stopPropagation()">
+                        <button pButton class="edit-btn" (click)="editTask(task.id)">Edit</button>
+                        <button pButton class="delete-btn p-button-danger" (click)="deleteTask(task.id)">Delete</button>
                     </div>
                 </td>
             </ng-container>
