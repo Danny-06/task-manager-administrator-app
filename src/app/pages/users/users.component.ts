@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { openModal } from 'src/app/libs/modal/modal.component';
 import { ShowComponent } from '../../utils/show-component';
 import { UserAccountComponent } from './account/user-account.component';
+import { User as AuthUser } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-main',
@@ -20,12 +21,20 @@ export class MainComponent implements OnInit {
 
   users: User[] | null = null
 
+  authUserMap = new Map<string, AuthUser>()
+
   async ngOnInit() {
     const authUsers = await this.authService.getAuthUsers()
     console.log('Auth Users', authUsers)
 
     this.users = await this.authService.getUsers()
     this.users.reverse()
+
+    authUsers.forEach(authUser => {
+      this.authUserMap.set(authUser.uid, authUser)
+    })
+
+    console.log('AuthUser Map', this.authUserMap)
 
     console.log('Users', [...this.users])
 
@@ -61,9 +70,9 @@ export class MainComponent implements OnInit {
   async seeUserAccount(uid: string) {
     const {instance, waitForDismiss} = await ShowComponent.show(UserAccountComponent)
 
-    // instance.setOptions({
-    //   user: this.a
-    // })
+    instance.setOptions({
+      authUser: this.authUserMap.get(uid)
+    })
 
     await waitForDismiss
   }

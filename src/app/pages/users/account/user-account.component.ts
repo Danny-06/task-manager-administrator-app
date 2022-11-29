@@ -18,7 +18,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   options = {
-    user: {} as AuthUser
+    authUser: {} as AuthUser
   }
 
   setOptions(options: any) {
