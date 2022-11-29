@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { DynamicComponentsService } from 'src/app/services/dynamic-components.service';
+import { ShowComponent } from '../../utils/show-component';
 
 
 export async function openModal(options: ModalOptions) {

@@ -3,18 +3,20 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { openModal } from 'src/app/libs/modal/modal.component';
+import { ShowComponent } from '../../utils/show-component';
+import { UserAccountComponent } from './account/user-account.component';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
 export class MainComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {}
 
   users: User[] | null = null
 
@@ -56,8 +58,14 @@ export class MainComponent implements OnInit {
 
   // Handle Users
 
-  seeUserAccount(uid: string) {
+  async seeUserAccount(uid: string) {
+    const {instance, waitForDismiss} = await ShowComponent.show(UserAccountComponent)
 
+    // instance.setOptions({
+    //   user: this.a
+    // })
+
+    await waitForDismiss
   }
 
   async deleteUser(uid: string) {
