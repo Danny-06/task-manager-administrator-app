@@ -8,8 +8,8 @@ import { UserAccountComponent } from './account/user-account.component';
 
 @Component({
   selector: 'app-main',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
 export class MainComponent implements OnInit {
 

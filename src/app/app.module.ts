@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './pages/user/user.component';
+import { MainComponent } from './pages/users/users.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -34,7 +34,7 @@ import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
 import { UserTaskComponent } from './pages/user-task/user-task.component';
-import { UserAccountComponent } from './pages/user/account/user-account.component';
+import { UserAccountComponent } from './pages/users/account/user-account.component';
 import { DialogModule } from 'primeng/dialog';
 import { ModalComponent } from './libs/modal/modal.component';
 import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.component';

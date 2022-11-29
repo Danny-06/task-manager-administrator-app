@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './pages/user/user.component';
+import { MainComponent } from './pages/users/users.component';
 
 import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
