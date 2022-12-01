@@ -4,8 +4,9 @@ import { UtilsService } from './utils.service';
 import { Observable } from 'rxjs'
 import { User } from '../interfaces/user';
 import { Task } from '../interfaces/task';
+import { AuthUserForm } from '../interfaces/auth-user-form';
 import { User as AuthUser } from '@angular/fire/auth';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 const usersPath = 'users'
 const tasksPath = 'tasks'
@@ -34,15 +35,46 @@ export class AuthService {
     return authUsers
   }
 
-  getAuthUser(uid: string) {
+  async getAuthUser(uid: string) {
+    const authUserObservable = this.http.get<AuthUser[]>(`${ADMIN_API_URL}/api/firebase-admin/auth/user/${uid}`)
+    const authUser = await this.utils.observableToPromise(authUserObservable)
 
+    return authUser
   }
 
-  deleteAuthUser(uid: string) {
+  async addAuthUser(authUserForm: AuthUserForm) {
+    const response = await fetch(
+      `${ADMIN_API_URL}/api/firebase-admin/auth/user/add`,
+      {
+        method: 'POST',
+        body: JSON.stringify(authUserForm),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
 
+    const data = await response.json()
+    return data
   }
 
-  getUsers(): Promise<User[]> {
+  async deleteAuthUser(uid: string) {
+    const response = await fetch(
+      `${ADMIN_API_URL}/api/firebase-admin/auth/user/delete`,
+      {
+        method: 'POST',
+        body: JSON.stringify(uid),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    const data = await response.json()
+    return data
+  }
+
+  getUsersData(): Promise<User[]> {
     const collectionRef = collection(this.firestore, usersPath)
     const observableData = collectionData(collectionRef, { idField: 'id' }) as Observable<User[]>
 

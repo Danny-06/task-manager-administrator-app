@@ -6,6 +6,7 @@ import { openModal } from 'src/app/libs/modal/modal.component';
 import { ShowComponent } from '../../utils/show-component';
 import { UserAccountComponent } from './account/user-account.component';
 import { User as AuthUser } from '@angular/fire/auth';
+import { Task } from '../../interfaces/task';
 
 @Component({
   selector: 'app-main',
@@ -27,7 +28,7 @@ export class MainComponent implements OnInit {
     const authUsers = await this.authService.getAuthUsers()
     console.log('Auth Users', authUsers)
 
-    this.users = await this.authService.getUsers()
+    this.users = await this.authService.getUsersData()
     this.users.reverse()
 
     authUsers.forEach(authUser => {

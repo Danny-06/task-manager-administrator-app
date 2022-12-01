@@ -38,6 +38,7 @@ import { UserAccountComponent } from './pages/users/account/user-account.compone
 import { DialogModule } from 'primeng/dialog';
 import { ModalComponent } from './libs/modal/modal.component';
 import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.component';
+import { UserEditComponent } from './pages/users/edit/user-edit.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.com
     UserTaskComponent,
     UserAccountComponent,
     ModalComponent,
-    UserTaskEditComponent
+    UserTaskEditComponent,
+    UserEditComponent
   ],
   imports: [
     // NgModule

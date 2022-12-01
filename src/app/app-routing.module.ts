@@ -41,7 +41,7 @@ const routes: Routes = [
 
 routes.push({
   path: '**',
-  redirectTo: 'main'
+  redirectTo: 'users'
 })
 
 @NgModule({
@@ -49,4 +49,4 @@ routes.push({
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

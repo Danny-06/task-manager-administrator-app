@@ -1,7 +1,19 @@
-<div class="overlay">
-    <div class="user-account">
-        <div class="uid">UID: {{options.authUser.uid}}</div>
-        <div class="email">Email: {{options.authUser.email}}</div>
-        <div class="email-verified">Email Verfified: {{options.authUser.emailVerified}}</div>
+<div class="overlay" (click)="close()">
+    <div class="user-account" (click)="$event.stopPropagation()">
+        <h2>Account info</h2>
+        <div class="info">
+            <div class="uid">
+                <span class="name">UID</span>:
+                {{options.authUser.uid}}
+            </div>
+            <div class="email">
+                <span class="name">Email</span>:
+                {{options.authUser.email}}
+            </div>
+            <div class="email-verified">
+                <span class="name">Email Verified</span>:
+                {{options.authUser.emailVerified}}
+            </div>
+        </div>
     </div>    
 </div>
