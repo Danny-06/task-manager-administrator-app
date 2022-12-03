@@ -9,22 +9,28 @@ import { User as AuthUser } from '@angular/fire/auth';
 import { Task } from '../../interfaces/task';
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class MainComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   users: User[] | null = null
 
   authUserMap = new Map<string, AuthUser>()
 
   async ngOnInit() {
+    const updatedAuthUser = await this.authService.updateAuthUser({
+      uid: 'XAvoPA7eKuU1N17fZGSDnq7g8yM2',
+      email: 'danny@gmail.com',
+      password: '12345678'
+    })
+
     const authUsers = await this.authService.getAuthUsers()
     console.log('Auth Users', authUsers)
 
@@ -42,13 +48,17 @@ export class MainComponent implements OnInit {
     this.addRemainderToData(this.users, 6)
 
     this.users.forEach(async user => {
-      const tasks = await this.authService.getTasksFromUser(user.id)
+      const tasks = await this.authService.getTasksFromUser(user.id!)
 
       if (user.name) console.log(user.name, tasks)
     })
   }
 
-  goToUser(userId: string) {
+  createUser() {
+    this.router.navigateByUrl(`/user/create`)
+  }
+
+  goToUser(userId: string | null | undefined) {
     if (!userId) return
 
     this.router.navigateByUrl(`/user/${userId}/tasks`)
@@ -69,7 +79,7 @@ export class MainComponent implements OnInit {
   // Handle Users
 
   async seeUserAccount(uid: string) {
-    const {instance, waitForDismiss} = await ShowComponent.show(UserAccountComponent)
+    const { instance, waitForDismiss } = await ShowComponent.show(UserAccountComponent)
 
     instance.setOptions({
       authUser: this.authUserMap.get(uid)
@@ -90,7 +100,7 @@ export class MainComponent implements OnInit {
   }
 
   editUser(uid: string) {
-    this.router.navigateByUrl(`/task/edit/${uid}`)
+    this.router.navigateByUrl(`/user/edit/${uid}`)
   }
 
 }

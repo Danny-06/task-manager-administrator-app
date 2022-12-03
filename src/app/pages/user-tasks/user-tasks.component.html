@@ -1,8 +1,10 @@
+<h1>List of tasks</h1>
 <p-table
     class="table"
     [value]="tasks ?? []"
     [paginator]="true" [rows]="6" [rowsPerPageOptions]="[6, 10, 20]"
-    [scrollable]="true">
+    [scrollable]="true"
+>
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>

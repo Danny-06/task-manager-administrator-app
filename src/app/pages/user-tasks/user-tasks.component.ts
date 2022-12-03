@@ -49,7 +49,9 @@ export class UserTasksComponent implements OnInit {
     }
   }
 
-  goToTask(taskId: string) {
+  goToTask(taskId: string | null | undefined) {
+    if (taskId == null) return
+
     this.router.navigateByUrl(`/user/${this.userId}/task/${taskId}`)
   }
 

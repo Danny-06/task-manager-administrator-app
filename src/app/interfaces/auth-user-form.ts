@@ -1,4 +1,5 @@
 export interface AuthUserForm {
-  email: string
-  password: string
+  uid?: string
+  email?: string
+  password?: string
 }

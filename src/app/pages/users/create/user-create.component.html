@@ -1,0 +1,17 @@
+<h1>Create User</h1>
+
+<div class="form">
+    <span class="name" class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="userData.name">
+        <label for="float-input">Name</label>
+    </span>
+    <span class="email" class="p-float-label">
+        <input type="email" pInputText [(ngModel)]="email">
+        <label for="float-input">Email</label>
+    </span>
+    <span class="password" class="p-float-label">
+        <input type="password" pInputText [(ngModel)]="password">
+        <label for="float-input">Password</label>
+    </span>
+    <button pButton (click)="createUser()">Create User</button>
+</div>

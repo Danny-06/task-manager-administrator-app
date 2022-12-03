@@ -26,6 +26,14 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  async addUser(authUserForm: AuthUserForm, userData: User) {
+    const newAuthUser = await this.addAuthUser(authUserForm)
+
+    userData.id = newAuthUser.uid
+
+    await this.addUserData(userData)
+  }
+
   // Auth Users
 
   async getAuthUsers(): Promise<AuthUser[]> {
@@ -45,6 +53,27 @@ export class AuthService {
   async addAuthUser(authUserForm: AuthUserForm) {
     const response = await fetch(
       `${ADMIN_API_URL}/api/firebase-admin/auth/user/add`,
+      {
+        method: 'POST',
+        body: JSON.stringify(authUserForm),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    const data = await response.json()
+
+    if (response.status !== 200) {
+      throw data
+    }
+
+    return data
+  }
+
+  async updateAuthUser(authUserForm: AuthUserForm) {
+    const response = await fetch(
+      `${ADMIN_API_URL}/api/firebase-admin/auth/user/update`,
       {
         method: 'POST',
         body: JSON.stringify(authUserForm),
@@ -86,6 +115,11 @@ export class AuthService {
     const observableData = docData(docRef, { idField: 'id' }) as Observable<User>
 
     return this.utils.observableToPromise(observableData)
+  }
+
+  addUserData(userData: User) {
+    const collectionRef = collection(this.firestore, `${usersPath}/${userData.id}}`)
+    return addDoc(collectionRef, userData)
   }
 
   deleteUserData(userId: string) {

@@ -24,7 +24,7 @@ export async function openModal(options: ModalOptions) {
 interface ModalOptions {
   header?: string
   message?: string
-  buttons?: { text: string, closeModal?: boolean, action?: (event?: Event) => void, type?: string }[]
+  buttons?: { text: string, action?: (event?: Event) => void, type?: 'cancel' }[]
 }
 
 @Component({
