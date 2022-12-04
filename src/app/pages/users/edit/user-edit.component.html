@@ -1,1 +1,19 @@
-<p>user-edit works!</p>
+<h1>Edit User</h1>
+
+<div class="form">
+    <img class="user-image" draggable="false" [src]="userData.image !== '' ? userData.image : userPlaceholder" alt>
+    <span class="name" class="p-float-label">
+        <input type="text" pInputText [(ngModel)]="userData.name">
+        <label for="float-input">Name</label>
+    </span>
+    <span class="email" class="p-float-label">
+        <input type="email" pInputText [(ngModel)]="authUserForm.email">
+        <label for="float-input">Email</label>
+    </span>
+    <span class="password" class="p-float-label">
+        <input type="password" pInputText [(ngModel)]="authUserForm.password">
+        <label for="float-input">Password (optional)</label>
+    </span>
+    <button pButton class="p-button-secondary" (click)="selectProfileImage()">Select Profile Image</button>
+    <button pButton class="submit p-button-success" (click)="editUser()">Submit Changes</button>
+</div>

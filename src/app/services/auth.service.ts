@@ -34,6 +34,22 @@ export class AuthService {
     await this.addUserData(userData)
   }
 
+  async updateUser(authUserForm: AuthUserForm, userData: User) {
+    await Promise.all([
+      this.updateAuthUser(authUserForm),
+      this.updateUserData(userData)
+    ])
+  }
+
+  async getUser(userUID: string): Promise<[AuthUser, User]> {
+    const [authUser, userData] = await Promise.all([
+      this.getAuthUser(userUID),
+      this.getUserData(userUID)
+    ])
+
+    return [authUser, userData]
+  }
+
   // Auth Users
 
   async getAuthUsers(): Promise<AuthUser[]> {
@@ -44,7 +60,7 @@ export class AuthService {
   }
 
   async getAuthUser(uid: string) {
-    const authUserObservable = this.http.get<AuthUser[]>(`${ADMIN_API_URL}/api/firebase-admin/auth/user/${uid}`)
+    const authUserObservable = this.http.get<AuthUser>(`${ADMIN_API_URL}/api/firebase-admin/auth/user/${uid}`)
     const authUser = await this.utils.observableToPromise(authUserObservable)
 
     return authUser
@@ -118,8 +134,12 @@ export class AuthService {
   }
 
   addUserData(userData: User) {
-    const collectionRef = collection(this.firestore, `${usersPath}/${userData.id}}`)
-    return addDoc(collectionRef, userData)
+    const docRef = doc(this.firestore, `${usersPath}/${userData.id}`)
+    return setDoc(docRef, userData)
+  }
+
+  updateUserData(userData: User) {
+    return this.addUserData(userData)
   }
 
   deleteUserData(userId: string) {

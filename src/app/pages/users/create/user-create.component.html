@@ -1,6 +1,7 @@
 <h1>Create User</h1>
 
 <div class="form">
+    <img class="user-image" draggable="false" [src]="userData.image !== '' ? userData.image : userPlaceholder" alt>
     <span class="name" class="p-float-label">
         <input type="text" pInputText [(ngModel)]="userData.name">
         <label for="float-input">Name</label>
@@ -13,5 +14,6 @@
         <input type="password" pInputText [(ngModel)]="password">
         <label for="float-input">Password</label>
     </span>
-    <button pButton (click)="createUser()">Create User</button>
+    <button pButton class="p-button-secondary" (click)="selectProfileImage()">Select Profile Image</button>
+    <button pButton class="submit p-button-success" (click)="createUser()">Submit Operation</button>
 </div>

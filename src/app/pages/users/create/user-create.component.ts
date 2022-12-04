@@ -6,6 +6,7 @@ import { AuthService } from '../../../services/auth.service';
 import { FireStorageService } from '../../../services/fire-storage.service';
 import { UtilsService } from '../../../services/utils.service';
 
+
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-create.component.html',
@@ -20,13 +21,15 @@ export class UserCreateComponent {
     private utils: UtilsService
   ) {}
 
+  readonly userPlaceholder = 'assets/user-placeholder.jpg'
+
   userData: User = {name: '', image: ''}
 
   email: string = ''
   password: string = ''
 
   async createUser() {
-    if (this.email === '' || this.password === '') {
+    if (this.email === '' || this.password === '' || this.userData.name === '') {
       this.emptyValuesAlert()
       return
     }
@@ -51,7 +54,7 @@ export class UserCreateComponent {
   private async emptyValuesAlert() {
     await openModal({
       header: 'Form error',
-      message: 'Both email and password must be filled',
+      message: 'Require empty fields must be filled',
       buttons: [
         {text: 'Ok'}
       ]

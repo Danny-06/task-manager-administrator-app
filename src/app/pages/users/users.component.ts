@@ -93,7 +93,13 @@ export class UsersComponent implements OnInit {
       header: 'Are you sure you want to delete this user?',
       message: 'This action will delete the user account along with its data',
       buttons: [
-        { text: 'Ok', action: () => this.authService.deleteUser(uid) },
+        {
+          text: 'Ok',
+          action: async () => {
+            await this.authService.deleteUser(uid)
+            location.reload()
+          }
+        },
         { text: 'Cancel', type: 'cancel' }
       ]
     })
