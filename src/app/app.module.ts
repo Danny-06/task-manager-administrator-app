@@ -38,13 +38,14 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { UserTasksComponent } from './pages/user-tasks/user-tasks.component';
-import { UserTaskComponent } from './pages/user-task/user-task.component';
+import { UserTaskComponent } from './pages/user-tasks/watch/user-task.component';
 import { UserAccountComponent } from './pages/users/account/user-account.component';
 import { DialogModule } from 'primeng/dialog';
 import { ModalComponent } from './libs/modal/modal.component';
-import { UserTaskEditComponent } from './pages/user-task/edit/user-task-edit.component';
+import { UserTaskEditComponent } from './pages/user-tasks/edit/user-task-edit.component';
 import { UserEditComponent } from './pages/users/edit/user-edit.component';
 import { UserCreateComponent } from './pages/users/create/user-create.component';
+import { UserTaskCreateComponent } from './pages/user-tasks/create/user-task-create.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { UserCreateComponent } from './pages/users/create/user-create.component'
     ModalComponent,
     UserTaskEditComponent,
     UserEditComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    UserTaskCreateComponent
   ],
   imports: [
     // NgModule
