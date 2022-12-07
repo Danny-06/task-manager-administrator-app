@@ -57,7 +57,7 @@ la [API creada en Python](https://github.com/Danny-06/python-firebase-admin).
 <table>
   <tr>
     <td>
-      
+      <img>
     </td>
   </tr>
 </table>
