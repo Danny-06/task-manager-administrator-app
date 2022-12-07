@@ -33,23 +33,23 @@ const routes: Routes = [
     component: UserCreateComponent,
   },
   {
-    path: 'user/edit/:id',
+    path: 'user/edit/:userId',
     component: UserEditComponent,
   },
   {
-    path: 'user/:id/tasks',
+    path: 'user/:userId/tasks',
     component: UserTasksComponent
   },
   {
-    path: 'user/:id/task/create',
+    path: 'user/:userId/task/create',
     component: UserTaskCreateComponent
   },
   {
-    path: 'user/:id/task/:id',
+    path: 'user/:userId/task/:taskId',
     component: UserTaskComponent
   },
   {
-    path: 'user/:id/task/edit/:id',
+    path: 'user/:userId/task/edit/:taskId',
     component: UserTaskEditComponent
   }
 ];

@@ -1,0 +1,89 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+
+  padding: 1rem;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+
+  > .submit {
+    margin-top: 1rem;
+    align-self: center;
+  }
+}
+
+textarea {
+  max-height: 180px;
+}
+
+.add-image {
+
+}
+
+.images {
+  width: 300px;
+  height: 230px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+
+  padding: 1rem;
+
+  border-radius: 1em;
+  outline: solid 2px #fff;
+  background-color: #222;
+
+  overflow: auto;
+
+  > .image {
+    position: relative;
+    z-index: 0;
+
+    width: 100%;
+    height: 190px;
+
+    background-color: #111;
+    border-radius: 1em;
+
+    > .delete-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      display: grid;
+      place-items: center;
+
+      width: 1.6em;
+      height: 1.6em;
+
+      border-radius: 50%;
+      background-color: #f00;
+
+      z-index: 10;
+    }
+
+    > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+    }
+  }
+}
+
+textarea {
+  min-height: 53px;
+}

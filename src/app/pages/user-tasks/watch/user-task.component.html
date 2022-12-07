@@ -1,1 +1,21 @@
-<p>user-task works!</p>
+<h1>Task View</h1>
+
+<div class="form">
+    <span class="name" class="p-float-label">
+        <input disabled type="text" pInputText [(ngModel)]="task.title">
+        <label for="float-input">Title</label>
+    </span>
+    <span class="email" class="p-float-label">
+        <textarea disabled type="email" pInputTextarea [(ngModel)]="task.description"></textarea>
+        <label for="float-input">Description</label>
+    </span>
+    <h2>Images (optional)</h2>
+    <div class="images">
+        <div class="image" *ngFor="let img of task.images" class="image">
+            <img draggable="false" [src]="img.src" alt>
+        </div>
+    </div>
+    <button pButton class="toggle-completed {{task.completed ? 'p-button-danger' : 'p-button-success'}}" (click)="toggleTaskCompleted()">
+        {{task.completed ? 'Mark Task as uncompleted' : 'Mark Task as completed'}}
+    </button>
+</div>

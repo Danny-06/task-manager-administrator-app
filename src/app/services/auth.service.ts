@@ -50,6 +50,13 @@ export class AuthService {
     return [authUser, userData]
   }
 
+  async deleteUser(userId: string) {
+    await Promise.all([
+      this.deleteAuthUser(userId),
+      this.deleteUserData(userId)
+    ])
+  }
+
   // Auth Users
 
   async getAuthUsers(): Promise<AuthUser[]> {
@@ -147,16 +154,16 @@ export class AuthService {
     return deleteDoc(docRef)
   }
 
-  async deleteUser(userId: string) {
-    await Promise.all([
-      this.deleteAuthUser(userId),
-      this.deleteUserData(userId)
-    ])
-  }
-
   getTasksFromUser(userId: string): Promise<Task[]> {
     const collectionRef = collection(this.firestore, `${usersPath}/${userId}/${tasksPath}`)
     const observableData = collectionData(collectionRef, { idField: 'id' }) as Observable<Task[]>
+
+    return this.utils.observableToPromise(observableData)
+  }
+
+  getTaskFromUser(userId: string, taskId: string): Promise<Task> {
+    const docRef = doc(this.firestore, `${usersPath}/${userId}/${tasksPath}/${taskId}`)
+    const observableData = docData(docRef, { idField: 'id' }) as Observable<Task>
 
     return this.utils.observableToPromise(observableData)
   }

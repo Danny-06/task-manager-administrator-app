@@ -9,14 +9,16 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Completed</th>
             <th>Actions</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-task>
         <tr (click)="goToTask(task.id)">
-            <ng-container *ngIf="task.title; else empty">
+            <ng-container *ngIf="task.title != null; else empty">
                 <td>{{task.title}}</td>
                 <td>{{task.description?.slice(0, 20)}}{{task.description.length > 22 ? '...' : ''}}</td>
+                <td>{{task.completed}}</td>
                 <td class="-interactive">
                     <div class="action-buttons" (click)="$event.stopPropagation()">
                         <button pButton class="edit-btn" (click)="editTask(task.id)">Edit</button>
@@ -26,6 +28,7 @@
             </ng-container>
             <ng-template #empty>
                 <td><button pButton style="visibility: hidden;">&nbsp;</button></td>
+                <td></td>
                 <td></td>
                 <td></td>
             </ng-template>

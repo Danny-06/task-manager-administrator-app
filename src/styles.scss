@@ -165,6 +165,10 @@ pre, code, var, kbd, output {
   user-select: text;
 }
 
+textarea {
+  resize: vertical;
+}
+
 
 [data-id="app-content"] {
   padding: 0;
@@ -228,6 +232,21 @@ p-table {
       }
     }
   }
+}
+
+.p-datatable .p-datatable-thead > tr {
+  background: #1e1e1e;
+  color: rgba(255, 255, 255, 0.87);
+  transition: none;
+}
+
+.p-datatable tr > th:first-child,
+.p-datatable tr > td:first-child {
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  background-color: inherit;
 }
 
 

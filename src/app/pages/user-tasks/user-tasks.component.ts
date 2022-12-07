@@ -22,7 +22,7 @@ export class UserTasksComponent implements OnInit {
   tasks: Task[] | null = null
 
   async ngOnInit() {
-    this.userId = this.activatedRoute.snapshot.paramMap.get('id')
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId')
 
     if (!this.userId) {
       return

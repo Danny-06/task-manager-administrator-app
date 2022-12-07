@@ -30,7 +30,7 @@ export class UserEditComponent implements OnInit {
   authUserForm: AuthUserForm = {}
 
   async ngOnInit() {
-    const uid = this.activatedRoute.snapshot.paramMap.get('id')
+    const uid = this.activatedRoute.snapshot.paramMap.get('userId')
 
     if (!uid) {
       openModal({
