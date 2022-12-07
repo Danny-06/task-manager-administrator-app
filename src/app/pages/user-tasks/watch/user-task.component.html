@@ -9,7 +9,7 @@
         <textarea disabled type="email" pInputTextarea [(ngModel)]="task.description"></textarea>
         <label for="float-input">Description</label>
     </span>
-    <h2>Images (optional)</h2>
+    <h2>Images</h2>
     <div class="images">
         <div class="image" *ngFor="let img of task.images" class="image">
             <img draggable="false" [src]="img.src" alt>
