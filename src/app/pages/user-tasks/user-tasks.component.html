@@ -17,7 +17,7 @@
         <tr (click)="goToTask(task.id)">
             <ng-container *ngIf="task.title != null; else empty">
                 <td>{{task.title}}</td>
-                <td>{{task.description?.slice(0, 20)}}{{task.description.length > 22 ? '...' : ''}}</td>
+                <td>{{task.description?.slice(0, 25)}}{{task.description.length >= 25 ? '...' : ''}}</td>
                 <td>{{task.completed}}</td>
                 <td class="-interactive">
                     <div class="action-buttons" (click)="$event.stopPropagation()">

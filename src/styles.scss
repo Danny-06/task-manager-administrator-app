@@ -242,6 +242,11 @@ p-table {
   transition: none;
 }
 
+.p-datatable tr > th,
+.p-datatable tr > td {
+  background-color: inherit;
+}
+
 .p-datatable tr > th:first-child,
 .p-datatable tr > td:first-child {
   position: sticky;
@@ -249,8 +254,6 @@ p-table {
   left: 0;
 
   white-space: nowrap;
-
-  background-color: inherit;
 }
 
 
