@@ -234,6 +234,8 @@ p-table {
   }
 }
 
+
+// Sticky column
 .p-datatable .p-datatable-thead > tr {
   background: #1e1e1e;
   color: rgba(255, 255, 255, 0.87);
@@ -246,7 +248,15 @@ p-table {
   top: 0;
   left: 0;
 
+  white-space: nowrap;
+
   background-color: inherit;
+}
+
+
+
+.p-button {
+  position: static;
 }
 
 
