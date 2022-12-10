@@ -40,6 +40,8 @@ export class UserTaskCreateComponent {
       return
     }
 
+    this.task.date = Date.now()
+
     this.authService.addTaskToUser(this.userId, this.task)
 
     this.router.navigateByUrl(`/user/${this.userId}/tasks`)
