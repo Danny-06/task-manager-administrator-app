@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "npm run flask-api | ng serve --open",
+    "flask-api": "cd ./python-firebase-admin && python ./src/main.py && cd ..",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "flask-api": "cd ./python-firebase-admin && python ./src/main.py && cd .."
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
